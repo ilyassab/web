@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import styled from '@emotion/styled'
 import { ifProp } from 'styled-tools'
+import { Theme } from '@ui/theme/src/theme'
 
 export interface ButtonUiProps {
   active?: boolean
@@ -14,7 +15,11 @@ export interface ButtonProps extends ButtonUiProps {
   type?: 'button' | 'reset' | 'submit'
 }
 
-const ButtonUi = styled('button')<ButtonUiProps>(
+interface Props extends ButtonUiProps {
+    theme?: Theme
+}
+
+const ButtonUi = styled('button')<Props>(
   ({ theme }) => ({
     display: 'inline-flex',
     justifyContent: 'center',
@@ -32,7 +37,7 @@ const ButtonUi = styled('button')<ButtonUiProps>(
     fontFamily: theme.fontFamily.sf,
     fontWeight: theme.fontWeights.bold,
     fontSize: theme.fontSizes.s,
-  }))
+  })),
 )
 
 export default ButtonUi

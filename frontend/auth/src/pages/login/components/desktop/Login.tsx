@@ -9,6 +9,17 @@ import messages from '../../messages'
 
 interface Props {
   intl: InjectedIntl
+  confirmPassword: string
+  email: string
+  errors: {
+      email: boolean,
+      password: boolean,
+  }
+  password: string
+  onChangeConfirmPassword: () => void
+  onChangeEmail: () => void
+  onChangePassword: () => void
+  onLogin: () => void
 }
 
 const Login: FC<Props> = ({
@@ -22,7 +33,7 @@ const Login: FC<Props> = ({
 }) => (
   <Column align='center'>
     <Layout basis={60} />
-    <Text size='2xl' height='xs' weight='bold'>
+    <Text size='2xl' lineHeight='xs' weight='bold'>
       {intl.formatMessage(messages.entrance)}
     </Text>
     <Layout basis={40} />
@@ -38,7 +49,7 @@ const Login: FC<Props> = ({
       <Layout basis={360}>
         <Input
           type='email'
-          border='lightGray'
+          borderColor='lightGray'
           error={errors.email}
           value={email}
           onChange={onChangeEmail}
@@ -59,7 +70,7 @@ const Login: FC<Props> = ({
       <Layout basis={360}>
         <Input
           type='password'
-          border='lightGray'
+          borderColor='lightGray'
           error={errors.password}
           value={password}
           onEnter={onLogin}

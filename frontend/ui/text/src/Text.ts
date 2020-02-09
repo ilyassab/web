@@ -1,5 +1,6 @@
 import { switchProp } from 'styled-tools'
 import styled from '@emotion/styled'
+import { Theme } from '@ui/theme/src/theme'
 
 export interface TextProps {
   size?: string
@@ -8,7 +9,8 @@ export interface TextProps {
   color?: string
   align?: 'left' | 'center' | 'right'
   transform?: 'uppercase' | 'lowercase'
-  display?: string
+  display?: string,
+  theme?: Theme
 }
 
 const Text = styled.span<TextProps>(
@@ -46,7 +48,7 @@ const Text = styled.span<TextProps>(
     lowercase: {
       textTransform: 'lowercase',
     },
-  })
+  }),
 )
 
 Text.defaultProps = {

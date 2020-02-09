@@ -31,6 +31,7 @@ export const module = {
                     browsers: '> 0.25%, not dead',
                   },
                   useBuiltIns: 'usage',
+                  corejs: '2.6.11',
                   modules: false,
                 },
               ],
@@ -72,6 +73,7 @@ export const module = {
 
 export const resolve = {
   extensions: ['.ts', '.tsx', '.js', '.json'],
+  alias: {'react-dom': '@hot-loader/react-dom'},
 }
 
 export const plugins = [

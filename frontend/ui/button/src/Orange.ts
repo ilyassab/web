@@ -2,8 +2,13 @@ import { createElement } from 'react'
 import styled from '@emotion/styled'
 import { ifProp } from 'styled-tools'
 import ButtonUi, { ButtonProps } from './Button'
+import { Theme } from '@ui/theme/src/theme'
 
-const Orange = styled(ButtonUi)<ButtonProps>(
+interface Props extends ButtonProps {
+    theme?: Theme
+}
+
+const Orange = styled(ButtonUi)<Props>(
   ({ theme }) => ({
     color: theme.colors.white,
     border: `1px solid ${theme.colors.orange}`,
@@ -11,7 +16,7 @@ const Orange = styled(ButtonUi)<ButtonProps>(
     boxShadow: '0 2px 4px 0 rgba(255, 168, 0, 0.3)',
     transition: 'ease-in 150ms',
   }),
-  ifProp('active', ({ theme }: any) => ({
+  ifProp('active', ({ theme }) => ({
     [':hover']: {
       color: theme.colors.ebony,
       boxShadow: '0 2px 6px 0 rgba(255, 168, 0, 0.7)',
@@ -27,7 +32,7 @@ const Orange = styled(ButtonUi)<ButtonProps>(
     background: theme.colors.white,
     border: `1px solid ${theme.colors.blueHaze}`,
     boxShadow: 'none !important',
-  }))
+  })),
 )
 
 const Button = ({ disabled, onClick, children, ...props }: ButtonProps) =>
@@ -40,11 +45,11 @@ const Button = ({ disabled, onClick, children, ...props }: ButtonProps) =>
       onClick: disabled ? null : onClick,
       ...props,
     },
-    children
+    children,
   )
 
 Button.defaultProps = {
-  onClick: () => {},
+  onClick: () => {return},
 }
 
 export default Button

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { ifProp } from 'styled-tools'
+import { Theme } from '@ui/theme/src/theme/types'
 import { Text } from '@ui/text'
 
 interface LinkProps {
@@ -7,6 +8,7 @@ interface LinkProps {
   hoverColor?: string
   underline?: boolean
   onClick?: () => void
+  theme?: Theme
 }
 
 const Link = styled(Text.withComponent('a'), {
@@ -25,7 +27,7 @@ const Link = styled(Text.withComponent('a'), {
     [':hover']: {
       textDecoration: 'none',
     },
-  })
+  }),
 )
 
 export default Link

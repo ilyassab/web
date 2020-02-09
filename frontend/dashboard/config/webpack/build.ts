@@ -83,6 +83,7 @@ export const module = {
                   targets: {
                     browsers: '> 0.25%, not dead',
                   },
+                  corejs: '2.6.11',
                   useBuiltIns: 'usage',
                   modules: false,
                 },

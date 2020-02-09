@@ -2,7 +2,14 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { init } from '../actions/init'
 
-class Preload extends Component {
+interface Props {
+  token: string
+  onInit: () => void
+  onAuth: () => void
+  onMain: () => void
+}
+
+class Preload extends Component<Props> {
   componentDidMount() {
     const { token, onInit, onAuth, onMain } = this.props
 
@@ -45,5 +52,5 @@ export default connect(
     onInit: () => dispatch(init()),
     onAuth: () => history.replace('/auth'),
     onMain: () => history.replace('/'),
-  })
+  }),
 )(Preload)

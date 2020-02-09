@@ -1,7 +1,8 @@
-import { createElement, KeyboardEvent } from 'react'
+import {ChangeEvent, createElement, KeyboardEvent} from 'react'
 import Wrapper from './Wrapper'
 import styled from '@emotion/styled'
 import { ifProp } from 'styled-tools'
+import { Theme } from '@ui/theme/src/theme'
 
 export interface InputElementProps {
   color?: string
@@ -11,6 +12,7 @@ export interface InputElementProps {
   warning?: boolean
   transparent?: boolean
   select?: boolean
+  theme?: Theme
 }
 
 export interface InputProps extends InputElementProps {
@@ -28,7 +30,7 @@ export interface InputProps extends InputElementProps {
 const InputElement = styled('input', {
   shouldForwardProp: prop =>
     !['borderColor', 'error', 'transparent', 'select'].includes(prop),
-})<WrapperElementProps>(
+})<InputElementProps>(
   ({ color, borderColor, theme }) => ({
     width: '100%',
     height: 40,
@@ -93,7 +95,7 @@ const InputElement = styled('input', {
       backgroundColor: 'transparent',
       border: 'none',
     },
-  })
+  }),
 )
 
 const Input = ({
@@ -118,7 +120,7 @@ const Input = ({
       value,
       placeholder,
       readOnly,
-      onChange: ({ target }) => onChange(target.value),
+      onChange: ({ target }: ChangeEvent<HTMLInputElement>) => {onChange(target.value)},
       onKeyPress: event => {
         if (event.key === 'Enter' && onEnter) {
           onEnter()
@@ -129,13 +131,13 @@ const Input = ({
         }
       },
       ...props,
-    })
+    }),
   )
 
 Input.defaultProps = {
   color: 'blueBayoux',
   borderColor: 'lightGray',
-  onChange: () => {},
+  onChange: () => {return},
 }
 
 export default Input

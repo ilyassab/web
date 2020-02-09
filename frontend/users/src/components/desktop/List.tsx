@@ -3,9 +3,11 @@ import { injectIntl, InjectedIntl } from 'react-intl'
 import { Column, Layout, Row } from '@ui/layout'
 import { Space, Text } from '@ui/text'
 import messages from '../../messages'
+import { RowParams } from '../../constants/list'
 
 interface Props {
-  intl: InjectedIntl
+  intl: InjectedIntl,
+  rows: RowParams[]
 }
 
 const List = ({ rows, intl }: Props) => (

@@ -8,7 +8,18 @@ import { RouteLink } from '@ui/link'
 import messages from '../../messages'
 
 interface Props {
-  intl: InjectedIntl
+  intl: InjectedIntl,
+  confirmPassword: string
+  email: string
+  errors: {
+      email: boolean,
+      password: boolean,
+  }
+  password: string
+  onChangeConfirmPassword: () => void
+  onChangeEmail: () => void
+  onChangePassword: () => void
+  onRegister: () => void
 }
 
 const Registration = ({
@@ -24,7 +35,7 @@ const Registration = ({
 }: Props) => (
   <Column align='center'>
     <Layout basis={60} />
-    <Text size='2xl' height='xs' weight='bold'>
+    <Text size='2xl' lineHeight='xs' weight='bold'>
       {intl.formatMessage(messages.registration)}
     </Text>
     <Layout basis={40} />
@@ -40,7 +51,7 @@ const Registration = ({
       <Layout basis={360}>
         <Input
           type='email'
-          border='lightGray'
+          borderColor='lightGray'
           error={errors.email}
           value={email}
           onChange={onChangeEmail}
@@ -61,7 +72,7 @@ const Registration = ({
       <Layout basis={360}>
         <Input
           type='password'
-          border='lightGray'
+          borderColor='lightGray'
           error={errors.password}
           value={password}
           onEnter={onRegister}
@@ -75,7 +86,7 @@ const Registration = ({
       <Layout basis={360}>
         <Input
           type='password'
-          border='lightGray'
+          borderColor='lightGray'
           error={password !== confirmPassword}
           value={confirmPassword}
           onEnter={onRegister}

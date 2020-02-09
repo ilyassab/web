@@ -10,5 +10,5 @@ const { store, persistor } = configureStore({}, history)
 
 render(
   <Root store={store} persistor={persistor} history={history} />,
-  document.getElementById('app')
+  document.getElementById('app'),
 )

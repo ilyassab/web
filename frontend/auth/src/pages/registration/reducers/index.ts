@@ -13,6 +13,25 @@ interface State {
   errors: Errors
 }
 
+interface ActionChange {
+  type: typeof actions.change
+  field: string
+  value: string
+}
+
+interface ActionError {
+  type: typeof actions.setErrors
+  errors: Errors
+}
+
+interface ActionClear {
+  type: typeof actions.clear
+}
+
+type Actions = ActionChange | ActionError | ActionClear
+
+type Types = typeof actions.change | typeof actions.setErrors | typeof actions.clear
+
 const initialState: State = {
   email: '',
   password: '',
@@ -20,8 +39,8 @@ const initialState: State = {
   errors: {},
 }
 
-export default createReducer(initialState, {
-  [actions.change]: (state, { field, value }) => ({
+export default createReducer<State, Types, Actions>(initialState, {
+  [actions.change]: (state, { field, value }: ActionChange) => ({
     ...state,
     field: value,
     errors: {
@@ -29,6 +48,6 @@ export default createReducer(initialState, {
       [field]: '',
     },
   }),
-  [actions.setErrors]: (state, { errors }) => ({ ...state, errors }),
+  [actions.setErrors]: (state, { errors }: ActionError) => ({ ...state, errors }),
   [actions.clear]: () => initialState,
 })

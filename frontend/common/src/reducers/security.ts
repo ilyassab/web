@@ -3,13 +3,32 @@ import { persistReducer } from 'redux-persist'
 import { createReducer } from '@utils/reducer'
 import * as actions from '../constants/security'
 
-const initialState = {
+interface State {
+  token: string
+  expiresIn: string
+}
+
+interface ActionAuth {
+    type: typeof actions.auth
+    token: string
+    expiresIn: string
+}
+
+interface ActionLogout {
+    type: typeof actions.logout
+}
+
+type Action = ActionAuth | ActionLogout
+
+type Types = typeof actions.auth | typeof actions.logout
+
+const initialState: State = {
   token: '',
   expiresIn: '',
 }
 
-const reducer = createReducer(initialState, {
-  [actions.auth]: (state, { token, expiresIn }) => ({
+const reducer = createReducer<State, Types, Action>(initialState, {
+  [actions.auth]: (state, { token, expiresIn }: ActionAuth) => ({
     token,
     expiresIn,
   }),
@@ -23,5 +42,5 @@ export default persistReducer(
     keyPrefix: 'aunited',
     version: 1,
   },
-  reducer
+  reducer,
 )

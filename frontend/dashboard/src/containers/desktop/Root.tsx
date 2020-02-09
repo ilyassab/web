@@ -2,6 +2,8 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/es/integration/react'
 import { History } from 'history'
+import { Store } from 'redux'
+import { Persistor } from 'redux-persist/es/types'
 import { hot } from 'react-hot-loader'
 import { Router } from 'react-router-dom'
 import { ThemeProvider } from '@ui/theme'
@@ -10,7 +12,9 @@ import Preload from '../Preload'
 import Routes from './Routes'
 
 interface RootProps {
-  history: History
+  history: History,
+  persistor?: Persistor,
+  store?: Store
 }
 
 const Root = ({ store, persistor, history }: RootProps) => (

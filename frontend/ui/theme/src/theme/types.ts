@@ -1,3 +1,15 @@
+import colors from '@ui/theme/src/theme/colors'
+import fontFamily from '@ui/theme/src/theme/fontFamily'
+
+export interface Theme {
+  fontFamily: typeof fontFamily,
+  fontWeights: ThemeFontWeights,
+  fontSizes: ThemeFontSizes,
+  lineHeights: ThemeLineHeights,
+  colors: typeof colors,
+  borderRadius: ThemeBorderRadius,
+}
+
 export interface ThemeBorderRadius extends Array<number> {
   s?: number
   n?: number
